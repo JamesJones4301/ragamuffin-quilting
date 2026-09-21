@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ragamuffin Quilting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --muslin:#faf4e2;
+    --muslin-deep:#f1e6c6;
+    --ink:#1a1208;
+    --ink-soft:#3f3122;
+    --barn:#a5423a;
+    --barn-deep:#8a332c;
+    --denim:#3c5c73;
+    --denim-deep:#2c4557;
+    --mustard:#c99a2e;
+    --forest:#4c6b4d;
+    --cream:#fffcf3;
+    --paper:#fbf5e4;
+    --seam: repeating-linear-gradient(90deg, transparent 0 6px, rgba(44,32,19,.35) 6px 7px, transparent 7px 13px);
+
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top: env(safe-area-inset-top, 0px);}
+  body{
+    margin:0;
+    background-color:var(--muslin);
+    background-image:
+      repeating-conic-gradient(from 0deg,
+        rgba(165,66,58,.24) 0deg 90deg,
+        rgba(201,154,46,.24) 90deg 180deg,
+        rgba(60,92,115,.24) 180deg 270deg,
+        rgba(76,107,77,.24) 270deg 360deg),
+      linear-gradient(to right, rgba(44,32,19,.28) 0 3px, transparent 3px),
+      linear-gradient(to bottom, rgba(44,32,19,.28) 0 3px, transparent 3px);
+    background-size: 150px 150px, 150px 150px, 150px 150px;
+    background-position: 0 0, 0 0, 0 0;
+    background-attachment: fixed;
+    color:var(--ink);
+    font-family:'Karla', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){ body{background-attachment: scroll;} }
+  img{max-width:100%; display:block;}
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- top nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:3px solid var(--ink);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; flex:none;
+    background:
+      conic-gradient(var(--barn) 0 90deg, var(--denim) 90deg 180deg, var(--mustard) 180deg 270deg, var(--forest) 270deg 360deg);
+    border-radius:4px;
+    border:2px solid var(--ink);
+    transform:rotate(3deg);
+  }
+  .brand-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.28rem;}
+  .brand-name em{font-style:italic; color:var(--barn);}
+  nav.links{display:flex; gap:26px; font-size:.95rem;}
+  nav.links a{text-decoration:none; color:var(--ink-soft); border-bottom:2px solid transparent; padding-bottom:2px; transition:border-color .15s, color .15s;}
+  nav.links a:hover{color:var(--ink); border-color:var(--barn);}
+  .nav-call{
+    display:none;
+  }
+  @media(min-width:720px){
+    .nav-call{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--ink); color:var(--muslin);
+      padding:9px 16px; border-radius:2px; text-decoration:none;
+      font-size:.9rem; font-weight:600;
+    }
+  }
+  @media(max-width:720px){ nav.links{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:64px 0 40px;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(165,66,58,.08), transparent 45%),
+      radial-gradient(circle at 86% 82%, rgba(60,92,115,.10), transparent 45%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
+  }
+  @media(min-width:900px){
+    .hero-grid{grid-template-columns:1.05fr .95fr; gap:48px;}
+  }
+  .eyebrow-patch{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--forest); color:var(--cream);
+    padding:6px 14px 6px 12px; font-size:.82rem; font-weight:600;
+    border-radius:2px; transform:rotate(-1.4deg);
+    box-shadow:2px 3px 0 rgba(44,32,19,.25);
+  }
+  .hero h1{
+    font-size:clamp(2.5rem, 5.6vw, 4.1rem);
+    line-height:0.98;
+    margin:20px 0 22px;
+  }
+  .hero h1 .line2{
+    display:block;
+    font-style:italic;
+    color:var(--barn);
+    font-weight:500;
+  }
+  .hero p.lede{
+    font-size:1.14rem; color:var(--ink-soft); max-width:46ch; margin-bottom:28px;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:13px 24px; border-radius:2px; text-decoration:none;
+    font-weight:700; font-size:.98rem; border:2px solid var(--ink);
+    cursor:pointer;
+  }
+  .btn-solid{background:var(--ink); color:var(--muslin);}
+  .btn-solid:hover{background:var(--barn); border-color:var(--barn);}
+  .btn-outline{background:transparent; color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--muslin);}
+
+  .hero-photo{
+    position:relative;
+    padding:14px;
+    background:var(--cream);
+    border:2px solid var(--ink);
+    box-shadow:8px 8px 0 rgba(44,32,19,.18);
+    transform:rotate(1.6deg);
+  }
+  .hero-photo img{border:1px solid rgba(44,32,19,.25); width:100%; height:340px; object-fit:cover; object-position: 50% 20%;}
+  .hero-photo figcaption{
+    margin-top:10px; font-size:.86rem; color:var(--ink-soft); font-style:italic;
+  }
+  .hero-photo .pin{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(-4deg);
+    width:34px; height:18px; background:var(--mustard);
+    border:2px solid var(--ink); border-radius:3px;
+  }
+
+  /* ---------- ticker / clothesline ---------- */
+  .line-section{
+    background:var(--ink); padding:38px 0 46px; overflow:hidden;
+    border-top:3px solid var(--ink); border-bottom:3px solid var(--ink);
+  }
+  .line-label{
+    color:var(--muslin); text-align:center; font-family:'Fraunces',serif;
+    font-style:italic; font-size:1.05rem; margin-bottom:22px; opacity:.85;
+  }
+  .clothesline{
+    position:relative;
+  }
+  .clothesline::before{
+    content:""; position:absolute; left:0; right:0; top:54px; height:2px;
+    background:rgba(239,228,201,.35);
+  }
+  .ticker-track{
+    display:flex; gap:26px; width:max-content;
+    animation:scroll-left 46s linear infinite;
+    padding:0 13px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+  }
+  .line-section:hover .ticker-track{animation-play-state:paused;}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .peg{
+    position:relative; flex:none; width:176px;
+  }
+  .peg .clip{
+    position:absolute; top:-6px; left:50%; transform:translateX(-50%);
+    width:16px; height:24px; background:var(--muslin-deep);
+    border:1px solid rgba(44,32,19,.5); border-radius:2px 2px 5px 5px; z-index:2;
+  }
+  .peg .frame{
+    background:var(--cream); padding:8px; margin-top:14px;
+    border:1px solid rgba(0,0,0,.15);
+    box-shadow:4px 5px 0 rgba(0,0,0,.28);
+    transform:rotate(var(--tilt, -2deg));
+  }
+  .peg:nth-child(3n){ --tilt:2deg; }
+  .peg:nth-child(3n+1){ --tilt:-2.4deg; }
+  .peg:nth-child(3n+2){ --tilt:1.2deg; }
+  .peg img{width:100%; height:150px; object-fit:cover;}
+  .peg .cap{color:var(--muslin); font-size:.74rem; text-align:center; margin-top:8px; opacity:.75;}
+
+  /* ---------- about ---------- */
+  .about{padding:76px 0;}
+  .about-grid{display:grid; grid-template-columns:1fr; gap:44px;}
+  @media(min-width:900px){ .about-grid{grid-template-columns:.85fr 1.15fr;} }
+  .section-tag{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--barn);
+    font-size:1rem; margin-bottom:10px; display:block;
+  }
+  .about h2{font-size:clamp(1.9rem,3.4vw,2.6rem); margin-bottom:20px; line-height:1.08;}
+  .verse-block{
+    background:var(--denim); color:var(--cream);
+    padding:28px 30px; border-radius:2px;
+    position:relative; margin:26px 0;
+    box-shadow:6px 6px 0 rgba(44,32,19,.2);
+  }
+  .verse-block p{margin:0; font-family:'Fraunces',serif; font-style:italic; font-size:1.18rem; line-height:1.5;}
+  .about-photo{
+    border:2px solid var(--ink); padding:10px; background:var(--cream);
+    box-shadow:8px 8px 0 rgba(44,32,19,.15);
+  }
+  .about-photo img{width:100%; height:420px; object-fit:cover; object-position:50% 25%;}
+  .about-photo p{padding:10px 4px 0; font-size:.86rem; color:var(--ink-soft); font-style:italic;}
+  .note-card{
+    background:var(--paper);
+    border-left:4px solid var(--mustard);
+    padding:18px 22px;
+    margin:22px 0 26px;
+    transform:rotate(-0.6deg);
+    box-shadow:4px 4px 0 rgba(44,32,19,.12);
+  }
+  .note-card p{margin:0; font-size:.98rem; color:var(--ink-soft); line-height:1.55;}
+  .note-card em{font-style:italic; color:var(--ink); font-family:'Fraunces',serif;}
+  .note-card.deposit{border-left-color:var(--barn); transform:rotate(0.5deg);}
+  .badge-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;}
+  .badge{
+    display:flex; align-items:center; gap:10px;
+    background:var(--paper); border:1px solid rgba(44,32,19,.25);
+    padding:10px 14px; font-size:.88rem; font-weight:600; border-radius:2px;
+  }
+  .badge .dot{width:10px; height:10px; border-radius:50%; flex:none;}
+
+  /* ---------- gallery ---------- */
+  .gallery{padding:70px 0 80px; background:var(--paper); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink);}
+  .gallery-head{text-align:left; max-width:640px; margin-bottom:40px;}
+  .gallery-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);}
+  .gallery-head p{color:var(--ink-soft); margin-top:12px;}
+  .g-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:22px;
+  }
+  @media(min-width:640px){ .g-grid{grid-template-columns:repeat(3,1fr);} }
+  @media(min-width:1020px){ .g-grid{grid-template-columns:repeat(4,1fr);} }
+  .g-item{
+    background:var(--cream); border:1px solid rgba(44,32,19,.2);
+    box-shadow:5px 5px 0 rgba(44,32,19,.15);
+  }
+  .g-item .img-wrap{overflow:hidden; aspect-ratio: 4/5;}
+  .g-item img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease;}
+  .g-item:hover img{transform:scale(1.05);}
+  .g-item .g-cap{padding:12px 12px 14px;}
+  .g-item .g-cap .name{font-weight:700; font-size:.92rem;}
+  .g-item .g-cap .desc{font-size:.8rem; color:var(--ink-soft); margin-top:3px;}
+
+  /* ---------- pricing ---------- */
+  .pricing{padding:78px 0;}
+  .pricing-head{max-width:620px; margin-bottom:44px;}
+  .pricing-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);}
+  .pricing-head p{color:var(--ink-soft); margin-top:12px;}
+  .price-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:22px;
+  }
+  @media(min-width:820px){ .price-grid{grid-template-columns:repeat(4,1fr);} }
+  .swatch{
+    background:var(--cream);
+    border:2px dashed rgba(44,32,19,.4);
+    padding:26px 22px;
+    position:relative;
+  }
+  .swatch .stripe{
+    position:absolute; top:0; left:0; right:0; height:9px;
+  }
+  .swatch:nth-child(1) .stripe{background:var(--mustard);}
+  .swatch:nth-child(2) .stripe{background:var(--barn);}
+  .swatch:nth-child(3) .stripe{background:var(--denim);}
+  .swatch:nth-child(4) .stripe{background:var(--forest);}
+  .swatch .kind{font-size:.82rem; text-transform:lowercase; color:var(--ink-soft); font-weight:600; margin-top:8px;}
+  .swatch .name{font-family:'Fraunces',serif; font-size:1.32rem; margin:8px 0 14px; font-weight:600;}
+  .swatch .price{font-size:2.1rem; font-weight:700; font-family:'Fraunces',serif;}
+  .swatch .price sup{font-size:1rem; font-weight:600; margin-left:2px;}
+  .price-note{margin-top:30px; color:var(--ink-soft); font-size:.92rem; max-width:60ch;}
+
+  .custom-callout{
+    margin-top:48px;
+    background:var(--cream);
+    border:2px solid var(--ink);
+    display:grid; grid-template-columns:1fr;
+    box-shadow:8px 8px 0 rgba(44,32,19,.18);
+  }
+  @media(min-width:760px){ .custom-callout{grid-template-columns:.9fr 1.1fr;} }
+  .custom-callout .cc-photo{overflow:hidden; min-height:220px;}
+  .custom-callout .cc-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 30%; min-height:220px;}
+  .custom-callout .cc-copy{padding:32px 34px;}
+  .custom-callout .section-tag{margin-bottom:8px;}
+  .custom-callout h3{font-size:clamp(1.5rem,2.6vw,1.9rem); line-height:1.15; margin-bottom:14px;}
+  .custom-callout p{color:var(--ink-soft); max-width:48ch;}
+  .custom-callout .btn{margin-top:20px;}
+
+  /* ---------- contact ---------- */
+  .contact{
+    background:var(--ink); color:var(--muslin); padding:80px 0;
+    position:relative; overflow:hidden;
+  }
+  .contact::before{
+    content:""; position:absolute; inset:0;
+    background-image:var(--seam);
+    opacity:.5;
+  }
+  .contact-inner{position:relative; text-align:center; max-width:640px; margin:0 auto;}
+  .contact h2{color:var(--muslin); font-size:clamp(2rem,4vw,2.8rem);}
+  .contact p{color:#d8cba9; margin-top:14px; font-size:1.05rem;}
+  .phone-patch{
+    display:inline-block; margin-top:32px; background:var(--muslin); color:var(--ink);
+    padding:18px 34px; border-radius:2px; border:2px solid var(--mustard);
+    font-family:'Fraunces',serif; font-size:1.7rem; font-weight:600; text-decoration:none;
+    box-shadow:6px 6px 0 rgba(201,154,46,.5);
+  }
+  .contact-sub{margin-top:22px; font-size:.9rem; color:#b7a97f;}
+  .contact-methods{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:18px; margin-top:32px;}
+  .email-link{
+    color:var(--muslin); text-decoration:none; font-size:1.02rem; font-weight:600;
+    border-bottom:2px solid var(--mustard); padding-bottom:2px;
+  }
+  .email-link:hover{color:var(--mustard);}
+  .paypal-tag{
+    display:inline-flex; align-items:center;
+    background:var(--forest); color:var(--cream);
+    padding:8px 14px; border-radius:2px; font-size:.86rem; font-weight:700;
+    transform:rotate(-1deg);
+  }
+
+  footer{
+    background:var(--paper); border-top:3px solid var(--ink);
+    padding:26px 0; text-align:center; font-size:.82rem; color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div class="brand-name">Ragamuffin <em>Quilting</em></div>
+    </div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-call" href="tel:+17373686025">Call 737-368-6025</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow-patch">Veteran-owned &middot; made by hand</span>
+      <h1>Scraps made<span class="line2">beautiful.</span></h1>
+      <p class="lede">A Ragamuffin is something folks tend to look down on or toss aside. I take leftover pieces of fabric &mdash; the kind bound for the scrap bin &mdash; and stitch them into something worth keeping. It's what was done for me, so it's what I do with cloth.</p>
+      <div class="hero-ctas">
+        <a href="#gallery" class="btn btn-solid">See the quilts</a>
+        <a href="tel:+17373686025" class="btn btn-outline">Call 737-368-6025</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <span class="pin" aria-hidden="true"></span>
+      <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="A baby sleeping under a pink patchwork quilt with an embroidered name">
+      <figcaption>Every quilt starts as a pile of scraps &mdash; and ends up somebody's favorite blanket.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="line-section">
+  <p class="line-label">&mdash; fresh off the line &mdash;</p>
+  <div class="clothesline">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- items injected twice by JS for seamless loop, initial markup below for no-JS fallback -->
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-tag">Who's behind the needle</span>
+      <h2>Meet Patsey &mdash; a disabled Vietnam veteran with a needle and a lot of faith.</h2>
+      <p>Patsey is a disabled Vietnam veteran in her eighties who serves the Lord faithfully with whatever loaves and fishes she has on hand &mdash; in her case, a sewing machine and a lifetime of scrap fabric. A while back she turned that faithfulness into a small business, cutting and piecing leftover fabric &mdash; old shirts, extra yardage, donated remnants &mdash; into quilts and pillows that had nowhere else to go and everything left to give.</p>
+      <div class="verse-block">
+        <p>"GOD takes a Ragamuffin person and forgives them, and turns them into someone beautiful. Ragamuffin Quilting is taking scraps of fabric and turning them into a useful item of beauty &mdash; crafted by a veteran woman."</p>
+      </div>
+      <div class="note-card">
+        <p>Every quilt Patsey makes is worth so much more than what she charges for it. If you've ever heard Dolly Parton's song <em>Coat of Many Colors</em>, you already know exactly what we mean &mdash; give her a call if you'd like her to make one for you.</p>
+      </div>
+      <div class="badge-row">
+        <div class="badge"><span class="dot" style="background:var(--barn)"></span>Disabled Vietnam veteran</div>
+        <div class="badge"><span class="dot" style="background:var(--denim)"></span>Every quilt one-of-a-kind</div>
+        <div class="badge"><span class="dot" style="background:var(--forest)"></span>Scraps rescued, not wasted</div>
+      </div>
+    </div>
+    <figure class="about-photo">
+      <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="A vintage crazy-patchwork quilt hung outside to air out in the sun">
+      <p>A crazy-patch quilt, pieced from decades of leftover fabric &mdash; airing out on the fence line.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="gallery-head">
+      <span class="section-tag">The gallery</span>
+      <h2>No two quilts are ever the same.</h2>
+      <p>Each one is pieced from whatever scraps were on hand that week, so the fabric, the colors, and the keepsake patches are different every time. Here's a look at some recent work.</p>
+    </div>
+    <div class="g-grid">
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Bright striped patchwork quilt with an appliqued teddy bear"></div>
+        <div class="g-cap"><div class="name">Teddy Bear Strip Quilt</div><div class="desc">Bold stripe piecing with a soft appliqued bear, bound in cream.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Blue and tan patchwork quilt with a hand-painted bluebird and scripture patch"></div>
+        <div class="g-cap"><div class="name">Bluebird Comfort Quilt</div><div class="desc">Denim and floral blocks framing a hand-painted Matthew 6 patch.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Green and yellow patchwork quilt with a Micah 6:8 scripture patch"></div>
+        <div class="g-cap"><div class="name">Walk Humbly Quilt</div><div class="desc">Meadow greens and golds around a hand-lettered Micah 6:8 patch.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Charcoal cable-knit fleece quilt with a Fishers of Men embroidered patch"></div>
+        <div class="g-cap"><div class="name">Fishers of Men Throw</div><div class="desc">Cozy cable-textured fleece, centered on a hand-drawn keepsake patch.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Green, teal and navy patchwork quilt with a Will of God patch"></div>
+        <div class="g-cap"><div class="name">Grace &amp; Wisdom Quilt</div><div class="desc">Scrap-pieced borders in sea green and navy, framing a blessing patch.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Green patchwork quilt with a hand-painted desert serenity prayer patch"></div>
+        <div class="g-cap"><div class="name">Serenity Prayer Quilt</div><div class="desc">Layered greens around a hand-painted desert scene and prayer.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Pink fleece baby blanket with a patchwork floral heart applique"></div>
+        <div class="g-cap"><div class="name">Floral Heart Baby Blanket</div><div class="desc">Plush pink fleece with a pieced, scalloped-edge heart appliqu&eacute;.</div></div>
+      </div>
+
+      <div class="g-item">
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Pink patchwork baby quilt with an embroidered name in a heart"></div>
+        <div class="g-cap"><div class="name">Name Keepsake Quilt</div><div class="desc">Soft pink patchwork with a hand-embroidered name, made to be used.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <span class="section-tag">What it costs</span>
+      <h2>Simple pricing, made to order.</h2>
+      <p>Every quilt is cut and pieced by hand once you place your order, so prices are by size, not by design. Reach out to talk colors, patches, and turnaround.</p>
+    </div>
+    <div class="price-grid">
+      <div class="swatch">
+        <span class="stripe"></span>
+        <div class="kind">baby quilt</div>
+        <div class="name">Small Baby Quilt</div>
+        <div class="price">$30</div>
+      </div>
+      <div class="swatch">
+        <span class="stripe"></span>
+        <div class="kind">baby quilt, padded</div>
+        <div class="name">Larger Padded Quilt</div>
+        <div class="price">$50</div>
+      </div>
+      <div class="swatch">
+        <span class="stripe"></span>
+        <div class="kind">bed quilt</div>
+        <div class="name">Twin Size</div>
+        <div class="price">$200</div>
+      </div>
+      <div class="swatch">
+        <span class="stripe"></span>
+        <div class="kind">bed quilt</div>
+        <div class="name">Queen Size</div>
+        <div class="price">$300</div>
+      </div>
+    </div>
+    <p class="price-note">Want a keepsake patch, a specific palette, or a name stitched in? Just ask &mdash; custom touches like the ones in the gallery above are part of how every quilt gets made. Payments are welcome by PayPal, cash, or check.</p>
+
+    <div class="note-card deposit">
+      <p><em>Please note:</em> every quilting order &mdash; no matter how big or small &mdash; requires a $25 non-refundable deposit to begin work. That deposit can be applied toward your final total.</p>
+    </div>
+
+    <div class="custom-callout">
+      <div class="cc-photo">
+        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85" alt="Pink baby blanket with a custom-pieced floral heart applique">
+      </div>
+      <div class="cc-copy">
+        <span class="section-tag">Made just for your baby</span>
+        <h3>I design custom quilts, too.</h3>
+        <p>If you have a special baby on the way &mdash; or a special someone who needs a quilt made just for them &mdash; I'll design it around your colors, fabrics, and keepsakes, from a first baby blanket to a one-of-a-kind bed quilt.</p>
+        <a class="btn btn-solid" href="tel:+17373686025">Talk through a custom design</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <h2>Ready for one of your own?</h2>
+    <p>Call or text to talk sizes, colors, and timing. Ragamuffin Quilting takes orders by phone or email, and accepts payment through PayPal.</p>
+    <div class="contact-methods">
+      <a class="phone-patch" href="tel:+17373686025">737-368-6025</a>
+      <a class="email-link" href="mailto:engelruh7@gmail.com">engelruh7@gmail.com</a>
+      <span class="paypal-tag">PayPal accepted</span>
+    </div>
+    <p class="contact-sub">Ragamuffin Quilting &middot; veteran-owned &middot; handmade to order</p>
+    <p class="contact-sub">A $25 non-refundable deposit is required to begin any order and can be applied toward your total.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="yr"></span> Ragamuffin Quilting. Every quilt handmade to order.</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const items = [
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Striped patchwork quilt with teddy bear applique"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Blue patchwork quilt with bluebird scripture patch"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Green and yellow patchwork quilt with scripture patch"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Charcoal cable fleece quilt with Fishers of Men patch"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Green and navy patchwork quilt with Will of God patch"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Green patchwork quilt with serenity prayer patch"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Pink baby blanket with floral heart applique"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Vintage crazy patchwork quilt outside"},
+    {src:"https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=1400&q=85", alt:"Pink baby quilt with embroidered name"}
+  ];
+
+  const track = document.getElementById('tickerTrack');
+  function buildPeg(item){
+    const peg = document.createElement('div');
+    peg.className = 'peg';
+    peg.innerHTML = `
+      <div class="clip"></div>
+      <div class="frame"><img src="${item.src}" alt="${item.alt}" loading="lazy"></div>
+      <div class="cap">handmade &middot; one of a kind</div>
+    `;
+    return peg;
+  }
+  // duplicate list so the scroll can loop seamlessly
+  [...items, ...items].forEach(item => track.appendChild(buildPeg(item)));
+</script>
+
+</body>
+</html>
